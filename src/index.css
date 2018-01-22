@@ -1,0 +1,8 @@
+.body {
+  font: 14px "Kavivanar", open-sans, sans-sarif;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+}
