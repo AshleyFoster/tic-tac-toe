@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import Game from './components/Game.js'
 
-class Game extends React.Component {
-  render() {
-    return(
-      <div className="game">
-      </div>
-    );
-  }
-}
+document.body.style.backgroundColor = "#b7ada3";
+
+ReactDOM.render(
+  <Game />,
+  document.getElementById('root')
+);

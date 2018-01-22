@@ -1,8 +1,43 @@
-.body {
+body {
+  background-color: #b7ada3;
+  display: flex;
   font: 14px "Kavivanar", open-sans, sans-sarif;
+  justify-content: center;
+  margin: 60px 0;
+}
+
+.cell {
+  background-color: #b7ada3;
+  border: none;
+  border-right: 3px dashed #fff;
+  box-sizing: border-box;
+  height: 100px;
+  padding: 0;
+  width: 100px;
+}
+
+.cell:last-child {
+  border-right: none;
+}
+
+button:focus {
+  outline: 0 !important;
+}
+
+.board-row {
+  background-color: #b7ada3;
+  border-bottom: 3px dashed #fff;
+  box-sizing: border-box;
+}
+
+.board-row:last-child {
+  border-bottom: none;
+  box-sizing: border-box;
 }
 
 .game {
+  background-color: #b7ada3;
   display: flex;
   flex-direction: row;
+  margin-top: 100px;
 }
