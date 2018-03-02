@@ -6,13 +6,20 @@ export default class Board extends React.Component {
     super(props);
     this.state = {
       cells: Array(9).fill(null),
+      xIsNext: true,
     };
   }
 
   handleClick(i) {
     const cells = this.state.cells.slice();
-    cells[i] = 'X';
-    this.setState({cells: cells});
+    if (calculateWinner(cells) || cells[i]) {
+      return;
+    }
+    cells[i] = this.state.xIsNext ? 'X' : 'O';
+    this.setState({
+      cells: cells,
+      xIsNext: !this.state.xIsNext,
+    });
   }
 
   renderCell(i) {
@@ -25,7 +32,13 @@ export default class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: X';
+    const winner = calculateWinner(this.state.cells);
+    let status;
+    if (winner) {
+      status = 'Winner: ' + winner;
+    } else {
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    }
 
     return (
       <div>
@@ -47,4 +60,25 @@ export default class Board extends React.Component {
       </div>
     );
   }
+}
+
+function calculateWinner(cells) {
+ const winningCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  for (let i = 0; i < winningCombos.length; i++) {
+    const [a, b, c] = winningCombos[i];
+    if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c]) {
+      return cells[a];
+    }
+  }
+  return null;
 }
