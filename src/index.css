@@ -1,42 +1,54 @@
 body {
-  background-color: #b7ada3;
+  background-color: #333;
   display: flex;
-  font: 14px "Kavivanar", open-sans, sans-sarif;
+  font: 40px 'Permanent Marker', cursive, open-sans, sans-sarif;
   justify-content: center;
-  margin: 60px 0;
-}
-
-.cell {
-  background-color: #b7ada3;
-  border: none;
-  border-right: 3px dashed #fff;
-  box-sizing: border-box;
-  height: 150px;
-  padding: 0;
-  width: 150px;
-}
-
-.cell:last-child {
-  border-right: none;
-}
-
-button:focus {
-  outline: 0 !important;
-}
-
-.board-row {
-  background-color: #b7ada3;
-  border-bottom: 3px dashed #fff;
-  box-sizing: border-box;
-}
-
-.board-row:last-child {
-  border-bottom: none;
-  box-sizing: border-box;
+  margin: 20px 0;
 }
 
 .game {
-  background-color: #b7ada3;
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  margin-left: 20px;
+}
+
+.status {
+  color: #f4f4f0;
+  margin-bottom: 10px;
+}
+
+.board-row:last-child {
+  border-bottom: transparent;
+}
+
+.cell {
+  background-color: #f4f4f0;
+  color: #333;
+  float: left;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 150px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 150px;
+}
+
+.cell:focus {
+  outline: none;
+}
+
+.board-row {
+  background-color: #333;
+}
+
+.game {
+  background-color: #333;
   display: flex;
   flex-direction: row;
   margin-top: 150px;

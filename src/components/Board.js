@@ -25,10 +25,10 @@ export default class Board extends React.Component {
   renderCell(i) {
     return (
       <Cell
-      value={this.state.cells[i]}
-      onClick={() => this.handleClick(i)}
+        value={this.state.cells[i]}
+        onClick={() => this.handleClick(i)}
       />
-    );
+      );
   }
 
   render() {
@@ -42,28 +42,29 @@ export default class Board extends React.Component {
 
     return (
       <div>
+        <div className="status">{status}</div>
         <div className="board-row">
           {this.renderCell(0)}
-          {this.renderCell(1)}
-          {this.renderCell(2)}
-        </div>
-        <div className="board-row">
-          {this.renderCell(3)}
-          {this.renderCell(4)}
-          {this.renderCell(5)}
-        </div>
-        <div className="board-row">
-          {this.renderCell(6)}
-          {this.renderCell(7)}
-          {this.renderCell(8)}
-        </div>
+      {this.renderCell(1)}
+      {this.renderCell(2)}
       </div>
+      <div className="board-row">
+        {this.renderCell(3)}
+      {this.renderCell(4)}
+      {this.renderCell(5)}
+      </div>
+      <div className="board-row">
+        {this.renderCell(6)}
+      {this.renderCell(7)}
+      {this.renderCell(8)}
+      </div>
+    </div>
     );
   }
 }
 
 function calculateWinner(cells) {
- const winningCombos = [
+  const winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
