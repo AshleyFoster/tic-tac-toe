@@ -1,13 +1,19 @@
 import React from 'react';
 import Cell from './Cell.js'
+import Reset from './Reset.js'
 
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = this.getInitialState();
+  }
+
+  getInitialState() {
+    const initialState = {
       cells: Array(9).fill(null),
-      xIsNext: true,
+      xIsNext: true
     };
+    return initialState
   }
 
   handleClick(i) {
@@ -22,20 +28,53 @@ export default class Board extends React.Component {
     });
   }
 
+  handleResetClick() {
+    this.setState(this.getInitialState());
+  }
+
   renderCell(i) {
+    const win = calculateWinner(this.state.cells);
+
+    let winningCells
+    let winningMove = false;
+
+    if (win) {
+      winningCells = win.winningCells;
+
+      if (winningCells.includes(i)) {
+        winningMove = true;
+      }
+    }
+
     return (
       <Cell
+        key={i}
         value={this.state.cells[i]}
+        highlight={winningMove}
         onClick={() => this.handleClick(i)}
       />
       );
   }
 
+  renderResetButton() {
+    return (
+      <Reset
+        onClick={() => this.handleResetClick()}
+      />
+      );
+  }
+
   render() {
-    const winner = calculateWinner(this.state.cells);
+    const win = calculateWinner(this.state.cells);
+    const reset = gameOver(this.state.cells);
     let status;
-    if (winner) {
-      status = 'Winner: ' + winner;
+    let winningCells;
+
+    if (win) {
+      status = 'Winner: ' + win.winner;
+      winningCells = win.winningCells;
+    } else if (reset) {
+      status = 'Tie';
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
@@ -58,6 +97,7 @@ export default class Board extends React.Component {
       {this.renderCell(7)}
       {this.renderCell(8)}
       </div>
+      <div className="reset">{this.renderResetButton()}</div>
     </div>
     );
   }
@@ -78,8 +118,18 @@ function calculateWinner(cells) {
   for (let i = 0; i < winningCombos.length; i++) {
     const [a, b, c] = winningCombos[i];
     if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c]) {
-      return cells[a];
+      return {
+        winner: cells[a],
+        winningCells: winningCombos[i]
+      }
     }
+  }
+  return null;
+}
+
+function gameOver(cells) {
+  if (cells.every(cell => cell !== null)) {
+    return true;
   }
   return null;
 }

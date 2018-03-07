@@ -7,8 +7,10 @@ body {
 }
 
 .game {
+  background-color: #333;
   display: flex;
   flex-direction: row;
+  margin-top: 150px;
 }
 
 .game-info {
@@ -18,6 +20,10 @@ body {
 .status {
   color: #f4f4f0;
   margin-bottom: 10px;
+}
+
+.board-row {
+  background-color: #333;
 }
 
 .board-row:last-child {
@@ -43,13 +49,17 @@ body {
   outline: none;
 }
 
-.board-row {
-  background-color: #333;
+.cell .winningMove {
+  background-color: #ddd;
 }
 
-.game {
-  background-color: #333;
-  display: flex;
-  flex-direction: row;
-  margin-top: 150px;
+.reset button{
+  background-color: #f4f4f0;
+  font-size: 20px;
+  outline: none;
+  padding: 10px;
+}
+
+.reset button:hover {
+  background-color: #ddd;
 }
